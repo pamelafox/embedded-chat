@@ -91,6 +91,7 @@ $(document).ready(function(){
 
     socket.onerror =  function(err) {
 		console.log('Socket err:' + err);
+		if (err) { window.location.reload(); }
 	};
     socket.onclose =  function() {
 		console.log('Socket closed');
@@ -101,7 +102,7 @@ $(document).ready(function(){
 	});
 
 	$(window).on('resize', resizeChat);
-	
+
 	$(window).on('message', function(event) {
 		console.log(event);
 		if (event.originalEvent.origin == 'http://class.coursera.org' || event.originalEvent.origin == 'https://class.coursera.org') {
