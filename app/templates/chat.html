@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" debug="true">
+	<head>
+		<link href="/static/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<link href="/static/simplechat.css?v={{ version }}" rel="stylesheet" type="text/css"/>
+		<base target="_blank">
+	</head>
+	<body>
+	<div class="container-fluid" style="padding-left:0px;">
+		<div class="row-fluid"  style="position: absolute;bottom: 35px;">
+			<div id="chat-messages" class="span12">
+				{% raw %}
+				<script id="chat-message-template" type="text/handlebars">
+					{{#each messages}}
+					<div class="chat-message">
+						<span class="pull-right">
+							<time class="chat-message-time timeago" datetime="{{ this.date }}"></time>
+						</span>
+						<span class="chat-message-author">{{this.user.name}}</span>{{#if this.isStatus}}<span class="chat-message-status">{{this.text}}{{else}}: <span class="chat-message-text">{{linkify this.text}}
+						</span>{{/if}}
+
+					</div>
+					{{/each}}
+				</script>
+				{% endraw %}
+			</div>
+		</div>
+
+		<div id="chat-bottom" class="row-fluid"  style="">
+			<div class="span12">
+				<div class="pull-right hide">room: {{ room_id }}</div>
+				<div id="chat-people" class="pull-right hide"></div>
+				<form id="bottom" class="form-horizontal" method="">
+					<span id="chat-name">{{user.name}}:</span>
+					<input id="chat-input" name="text" type="text" placeholder="Your Message"></input>
+					<button id="send" class="btn btn-mini hide">SEND</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/_ah/channel/jsapi"></script>
+	<script type="text/javascript" src="/static/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/handlebars.js"></script>
+	<script type="text/javascript" src="/static/jquery.timeago.js"></script>
+	<script type="text/javascript" src="/static/linkify.js"></script>
+	<script type="text/javascript" src="/static/simplechat.js?v={{ version }}"></script>
+	<script>
+	var clientId = '{{ client_id }}';
+	var clientToken = '{{ client_token }}';
+	var roomId    = '{{ room_id }}';
+	var userId    = '{{ user.get_id() }}';
+	</script>
+	</body>
+</html>

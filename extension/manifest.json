@@ -1,0 +1,20 @@
+{
+	"manifest_version": 2,
+	"name": "Coursera Chat (Internet History).",
+	"version": "0.0.2",
+	"description": "Chat with other classmates while watching videos in the Internet History class.",
+	"content_scripts": [{
+		"matches": [
+			"http://class.coursera.org/insidetheinternet-2012-001/lecture/*",
+			"https://class.coursera.org/insidetheinternet-2012-001/lecture/*"],
+		"js": [
+			"main.js"
+		]
+	}],
+	"icons": {"16": "icon_16.png",
+           	  "48": "icon_48.png",
+          	  "128": "icon_128.png" },
+	"permissions": [
+		"https://class.coursera.org/*"
+	]
+}
